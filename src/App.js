@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Calculator from './components/Calculator';
-import TestComponent from './TestComponent';
 import DateSelector from './components/DateSelector';
 import './App.css';
 
@@ -14,7 +13,6 @@ class App extends Component {
                 <br/>
                 <DateSelector/>
                 <br/>
-                <TestComponent/>
             </div>
         );
     }

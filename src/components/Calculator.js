@@ -4,7 +4,7 @@ import {changeAmount} from '../actions/index' ;
 //import './App.css';
 
 const mapStateToProps = state => {
-    return { amount: state.amount, currency:state.currency };
+    return { amount: state.amount, currency:state.currency, data:state.data };
 };
 
 function mapDispatchToProps(dispatch) {
@@ -32,12 +32,17 @@ class ConnectedCalculator extends Component {
             <div className="Calculator">
                 <input type="text" size="10" onChange={this.currencyAmountChange} value={this.props.amount}/>
 
-                <select onChange={this.currencyTypeChanged}>
-                    <option>Пункт 1</option>
-                    <option>Пункт 2</option>
-                </select> = {roubles.toFixed(2)} рублей
+                {this.createSelect()}
+
+                 = {roubles.toFixed(2)} рублей
             </div>
         );
+    }
+
+    createSelect = () => {
+        if (!this.props.data) return null ;
+        let options = this.props.data.map((value, index) => <option value={value.ratio} key={index}>{value.charCode}</option>) ;
+        return <select onChange={this.currencyTypeChanged}> {options} </select> ;
     }
 }
 

@@ -13,12 +13,27 @@ export function changeAmount(amount) {
 
 export function getData(date) {
     const url = date ? "http://localhost/proxy.php?date_req=" + date : "http://localhost/proxy.php" ;
+
+    let parseData = (data) => {
+        let result = [] ;
+        let xmlDoc = (new DOMParser()).parseFromString(data,"text/xml");
+        let nodeList = xmlDoc.getElementsByTagName("Valute") ;
+
+       for (let i=0; i< nodeList.length; i++) {
+           let node = nodeList[i] ;
+           let charCode = node.getElementsByTagName("CharCode")[0].childNodes[0].nodeValue ;
+           let ratio = parseFloat(node.getElementsByTagName("Value")[0].childNodes[0].nodeValue.replace(',','.')) ;
+           result.push({ratio, charCode}) ;
+       }
+
+        return result ;
+    } ;
+
     return function(dispatch) {
         return fetch(url)
             .then(response => response.text())
             .then(data => {
-                console.log(data) ;
-                dispatch({ type: DATA_LOADED, data });
+                dispatch({ type: DATA_LOADED, data:parseData(data) });
             })
             .catch( message => console.log(message) );
     };
