@@ -26,15 +26,17 @@ class ConnectedCalculator extends Component {
     } ;
 
     render() {
-        const ratio = this.getRatio() ;
-        const roubles = this.props.amount * ratio ;
+
+        const amountValue = isNaN(this.props.amount) ? 0 : this.props.amount ;
+        const roubles = amountValue * this.getRatio() ;
 
         return (
-            <div className="Calculator">
-                <input type="text" size="10" onChange={this.currencyAmountChange} value={this.props.amount}/>
+            <div className="form-inline">
+                <input type="text" size="10" onChange={this.currencyAmountChange} value={amountValue}
+                       className="form-control" style={{width:"5em"}}/>
 
                 {this.createSelect()}
-
+                &nbsp;
                  = {roubles.toFixed(2)} рублей
             </div>
         );
@@ -45,7 +47,7 @@ class ConnectedCalculator extends Component {
         let options = this.props.data.map((value, index) => <option value={value.charCode} key={index}>{value.charCode}</option>) ;
         let hiddenOptiom = <option value="" disabled hidden>...</option>  ;
         let value = this.props.currency || "" ;
-        return <select onChange={this.currencyTypeChanged} value={value}>
+        return <select onChange={this.currencyTypeChanged} value={value} className="custom-select">
                     {hiddenOptiom}
                     {options}
                 </select> ;

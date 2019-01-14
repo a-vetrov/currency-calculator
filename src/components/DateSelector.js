@@ -27,9 +27,9 @@ class ConnectedDateSelector extends Component {
     render() {
 
         return (
-            <div>
-                Дата :
-                <input type="date" onChange={this.onDateChanged}/>
+            <div className="form-inline">
+                <span className="card-text">Дата : &nbsp;</span>
+                <input type="date" onChange={this.onDateChanged} className="form-control" style={{width:"10em"}}/>
             </div>
         );
     }

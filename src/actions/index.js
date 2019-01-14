@@ -12,7 +12,8 @@ export function changeAmount(amount) {
 };
 
 export function getData(date) {
-    const url = date ? "http://localhost/proxy.php?date_req=" + date : "http://localhost/proxy.php" ;
+    //const url = date ? "http://localhost/proxy.php?date_req=" + date : "http://localhost/proxy.php" ;
+    const url = date ? "./proxy.php?date_req=" + date : "./proxy.php" ;
 
     let parseData = (data) => {
         let result = [] ;
