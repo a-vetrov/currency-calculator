@@ -1,1 +1,4 @@
 export const CHANGE_CURRENCY = "CHANGE_CURRENCY";
+export const CHANGE_AMOUNT = "CHANGE_AMOUNT";
+export const CHANGE_DATE = "CHANGE_DATE";
+export const DATA_LOADED = "DATA_LOADED";
