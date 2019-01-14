@@ -18,7 +18,6 @@ class ConnectedDateSelector extends Component {
     onDateChanged = (event) => {
         let newDate = event.target.value ;
         newDate = newDate.split("-").reverse().join('/') ;
-        console.log(newDate) ;
         this.props.changeDate(newDate) ;
         this.props.getData(newDate)
     } ;
