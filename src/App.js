@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Calculator from './components/Calculator';
 import './App.css';
 
 class App extends Component {
@@ -6,7 +7,7 @@ class App extends Component {
     componentDidMount = () => {
         console.log("App started") ;
 
-        fetch('http://www.cbr.ru/scripts/XML_daily.asp')
+        fetch('http://localhost/proxy.php')
             .then(function(response) {
                 console.log(response.headers.get('Content-Type')); // application/json; charset=utf-8
                 console.log(response.status); // 200
@@ -14,15 +15,18 @@ class App extends Component {
                 return response.text();
             })
             .then(function(data) {
-                console.log(data) ;
+                //console.log(data) ;
             })
-            .catch( alert );
+            .catch( function(message) {
+                //console.log(message) ;
+            } );
     } ;
 
     render() {
         return (
             <div className="App">
                 <h1>Валютный калькулятор</h1>
+                <Calculator/>
             </div>
         );
     }
